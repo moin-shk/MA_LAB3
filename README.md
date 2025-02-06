@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # MALab_1
 =======
 # Welcome to your Expo app 👋
@@ -52,3 +53,6 @@ Join our community of developers creating universal apps.
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 >>>>>>> 6fb7fa3 (Initial commit)
+=======
+# MA_LAB3
+>>>>>>> 1342890ba9f4f2d9fb5d6e56e1e5109b6486a094
