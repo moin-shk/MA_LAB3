@@ -1,71 +1,57 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './components/homescreen';
-import Apple from './components/apple';
-import Orange from './components/orange';
-import Mango from './components/mango';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import IncrementButton from './components/IncrementButton';
+import DecrementButton from './components/DecrementButton';
 
-// Define the type for our navigation stack parameters
-export type RootStackParamList = {
-  Home: undefined;
-  Apple: undefined;
-  Orange: undefined;
-  Mango: undefined;
-};
+export default function Lab3Page() {
+  // State management for the counter
+  const [counter, setCounter] = useState<number>(0);
 
-const Stack = createStackNavigator<RootStackParamList>();
+  // Handler functions to modify state
+  const handleIncrement = (): void => {
+    setCounter(prevCount => prevCount + 1);
+  };
 
-const App = () => {
+  const handleDecrement = (): void => {
+    setCounter(prevCount => prevCount - 1);
+  };
+
   return (
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#fff',
-            elevation: 0, // Remove shadow on Android
-            shadowOpacity: 0, // Remove shadow on iOS
-          },
-          headerTitleStyle: {
-            fontSize: 20,
-            fontWeight: 'bold',
-            color: '#333',
-          },
-          headerTintColor: '#FFA500',
-          cardStyle: { backgroundColor: '#fff' },
-        }}
-      >
-        <Stack.Screen 
-          name="Home" 
-          component={HomeScreen}
-          options={{
-            title: 'Fresh Fruits',
-            headerShown: true,
-          }}
-        />
-        <Stack.Screen 
-          name="Apple" 
-          component={Apple}
-          options={{
-            headerShown: false, // Hide header as we have custom back button
-          }}
-        />
-        <Stack.Screen 
-          name="Orange" 
-          component={Orange}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen 
-          name="Mango" 
-          component={Mango}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-  );
-};
+    <View style={styles.container}>
+      <Text style={styles.title}>Lab 3: Counter App</Text>
+      
+      <View style={styles.counterContainer}>
+        <Text style={styles.counterText}>Counter Value: {counter}</Text>
+      </View>
 
-export default App;
+      <View style={styles.buttonContainer}>
+        <IncrementButton onIncrement={handleIncrement} />
+        <DecrementButton onDecrement={handleDecrement} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 30,
+  },
+  counterContainer: {
+    marginBottom: 30,
+  },
+  counterText: {
+    fontSize: 20,
+  },
+  buttonContainer: {
+    gap: 10,
+  }
+});
